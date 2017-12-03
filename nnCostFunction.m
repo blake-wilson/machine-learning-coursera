@@ -75,12 +75,7 @@ end
 
 reg = reg / (2 * m) * lambda;
 
-disp(sprintf('reg is %f', reg));
-
-
 J = J / m;
-disp('******************');
-disp(J);
 
 J = J + reg;
 
