@@ -131,6 +131,26 @@ disp(sprintf('theta2 grad size %d %d', size(Theta2_grad)));
 Theta1_grad = Theta1_grad ./ m;
 Theta2_grad = Theta2_grad ./ m;
 
+
+% Do regularization
+Theta1_reg = zeros(size(Theta1_grad))
+Theta2_reg = zeros(size(Theta2_grad));
+for i = 1:size(Theta1_grad)(1)
+    for j = 2:size(Theta1_grad)(2)
+        Theta1_reg(i, j) = Theta1(i, j);
+    end
+end
+for i = 1:size(Theta2_grad)(1)
+    for j = 2:size(Theta2_grad)(2)
+        Theta2_reg(i, j) = Theta2(i, j);
+    end
+end
+Theta1_reg = Theta1_reg * lambda / m;
+Theta1_grad = Theta1_grad + Theta1_reg;
+
+Theta2_reg = Theta2_reg * lambda / m;
+Theta2_grad = Theta2_grad + Theta2_reg;
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
 %               following parts.
