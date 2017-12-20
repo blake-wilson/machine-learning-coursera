@@ -23,9 +23,13 @@ ht = X*theta;
 J = sum((ht - y).^2) + lambda .* sum((theta(2:end).^2));
 J = J / (2 * m);
 
+for i = 1:length(grad)
+    grad(i) = grad(i) + (1 / m) * sum((ht - y) .* X(:,i));
+    if i >= 2
+        grad(i) = grad(i) + lambda / m * theta(i);
+    end
+end
 
 % =========================================================================
-
-grad = grad(:);
 
 end
