@@ -30,20 +30,25 @@ best = 1000000;
 best_sig = 0;
 best_c = 0;
 
-for i = 1:length(searchVals)
-    for j = 1:length(searchVals)
-        model = svmTrain(X, y, searchVals(i), @(x1, x2) gaussianKernel(x1, x2, searchVals(j)), 1e-3, 20);
-        predictions = svmPredict(model, Xval);
-        perror = mean(double(predictions ~= yval));
-        if perror < best
-            best = perror;
-            best_c = searchVals(i);
-            best_sig = searchVals(j);
-        end
-    end
-end
-C = best_c;
-sigma = best_sig;
+% for i = 1:length(searchVals)
+%     for j = 1:length(searchVals)
+%         model = svmTrain(X, y, searchVals(i), @(x1, x2) gaussianKernel(x1, x2, searchVals(j)), 1e-3, 20);
+%         predictions = svmPredict(model, Xval);
+%         perror = mean(double(predictions ~= yval));
+%         if perror < best
+%             best = perror;
+%             best_c = searchVals(i);
+%             best_sig = searchVals(j);
+%         end
+%     end
+% end
+% C = best_c;
+% sigma = best_sig;
+
+C = 1;
+sigma = 0.1;
+
+disp(sprintf('best C: %f best sigma %f', C, sigma));
 
 % =========================================================================
 
