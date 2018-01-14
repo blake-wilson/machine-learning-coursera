@@ -26,15 +26,19 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+div_counter = zeros(K,1);
+for i = 1:length(idx)
+    ci = idx(i);
+    centroids(ci,:) = centroids(ci,:) + X(i,:);
+    div_counter(ci) = div_counter(ci) + 1;
+end
 
-
-
-
-
-
-
+for d = 1:length(div_counter)
+    if div_counter(d) > 0
+        centroids(d,:) = centroids(d,:) / div_counter(d);
+    end
+end
 % =============================================================
-
 
 end
 
