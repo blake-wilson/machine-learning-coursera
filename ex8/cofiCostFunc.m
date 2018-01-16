@@ -62,10 +62,25 @@ xt = R .* (X * Theta' - Y);
 
 for i=1:num_features
     X_grad(:, i) = xt * Theta(:, i);
+    X_grad(:, i) += lambda * X(:, i);
 end
 for i = 1:num_features
     Theta_grad(:, i) = xt' * X(:, i);
+    Theta_grad(:, i) += lambda * Theta(:, i);
 end
+
+reg_theta = 0;
+reg_x = 0;
+for k=1:num_features
+    for j=1:num_users
+        reg_theta += Theta(j,k)**2;
+    end
+    for i=1:num_movies
+        reg_x += X(i, k)**2;
+    end
+end
+
+J += (lambda / 2) * (reg_theta + reg_x);
 
 % =============================================================
 
