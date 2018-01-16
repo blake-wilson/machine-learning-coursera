@@ -40,12 +40,6 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
-% Y = R.*Y;
-
-% J should be 1.2868
-disp(X);
-disp(Y);
-
 % vectorized - left unvectorized solution commented out below
 J = sum(sum(R .* (X * Theta' - Y).^2));
 
@@ -61,8 +55,17 @@ J = sum(sum(R .* (X * Theta' - Y).^2));
 
 J /= 2;
 
-disp('J is');
-disp(J)
+% X_grad = sum(sum ( (R .* ((X * Theta' - Y) )) * Theta ));
+% Theta_grad = sum(sum( (R .* ((X * Theta' - Y)) )' * X ));
+
+xt = R .* (X * Theta' - Y);
+
+for i=1:num_features
+    X_grad(:, i) = xt * Theta(:, i);
+end
+for i = 1:num_features
+    Theta_grad(:, i) = xt' * X(:, i);
+end
 
 % =============================================================
 
