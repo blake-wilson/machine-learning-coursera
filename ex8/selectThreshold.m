@@ -37,7 +37,6 @@ for epsilon = min(pval):stepsize:max(pval)
             false_neg += 1;
         end
     end
-    disp(sprintf('true pos: %d false_neg %d false_pos %d', true_pos, false_neg, false_pos));
 
     prec = true_pos / (true_pos + false_pos);
     rec = true_pos / (true_pos + false_neg);
