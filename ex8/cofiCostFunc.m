@@ -40,17 +40,17 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
-% for i = 1:size(X,1)
-%     for j = 1:num_movies
-%         if X(i,j) == 0
-%             % skip movie if it has not been rated
-%             continue
-%         end
-%         J += (Theta(j)' * X(i,:) - Y(j,i)) .^ 2;
-%     end
-% end
+for i = 1:size(X,1)
+    for j = 1:size(Theta, 1)
+        if R(i,j) == 0
+            % skip movie if it has not been rated
+            continue
+        end
+        J += (Theta(j,:) * X(i,:)' - Y(i,j)) .^ 2;
+    end
+end
 
-% J /= 2;
+J /= 2;
 
 % =============================================================
 
